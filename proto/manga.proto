@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package mangahub;
+
+option go_package = "mangahub/proto;proto";
+
+message Manga {
+  int32 id = 1;
+  string title = 2;
+  string author = 3;
+  repeated string genres = 4;
+  string status = 5;
+  int32 total_chapters = 6;
+  string description = 7;
+}
+
+message Progress {
+  int32 user_id = 1;
+  int32 manga_id = 2;
+  int32 current_chapter = 3;
+  string status = 4;
+  string updated_at = 5;
+}
+
+message GetMangaRequest {
+  int32 id = 1;
+}
+
+message GetMangaResponse {
+  Manga manga = 1;
+}
+
+message ListMangaRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListMangaResponse {
+  repeated Manga manga = 1;
+  int32 total = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+message GetUserProgressRequest {
+  int32 user_id = 1;
+  int32 manga_id = 2;
+}
+
+message GetUserProgressResponse {
+  Progress progress = 1;
+}
+
+message ListUserProgressRequest {
+  int32 user_id = 1;
+}
+
+message ListUserProgressResponse {
+  repeated Progress progress = 1;
+  int32 count = 2;
+}
+
+service MangaHubQuery {
+  rpc GetManga(GetMangaRequest) returns (GetMangaResponse);
+  rpc ListManga(ListMangaRequest) returns (ListMangaResponse);
+  rpc GetUserProgress(GetUserProgressRequest) returns (GetUserProgressResponse);
+  rpc ListUserProgress(ListUserProgressRequest) returns (ListUserProgressResponse);
+}
