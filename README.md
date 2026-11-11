@@ -50,8 +50,3 @@ Follow these steps to set up and run the application locally:
 5. **View in browser:**
    Open your web browser and go to `http://localhost:5173` (or your Vite local server URL).
 
----
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
